@@ -1,14 +1,11 @@
-// Скрипт с диаграммой распределения активов
+// Скрипт с диаграммой распределения активов и дополнительными профилями
 
-// Ждем загрузки всей страницы
 window.addEventListener('DOMContentLoaded', () => {
-  // Изменяем футер при загрузке
   const footer = document.querySelector('footer p');
   if (footer) {
     footer.textContent = 'Клад Инвестора 9.0';
   }
 
-  // Вешаем обработчик на кнопку "Пройти тест"
   const startButton = document.getElementById('start-test');
   if (startButton) {
     startButton.addEventListener('click', () => {
@@ -17,7 +14,6 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Обработчик формы теста
   const quizForm = document.getElementById('quiz-form');
   if (quizForm) {
     quizForm.addEventListener('submit', function (e) {
@@ -25,39 +21,43 @@ window.addEventListener('DOMContentLoaded', () => {
 
       const formData = new FormData(this);
       let score = 0;
-
       for (let [name, value] of formData.entries()) {
         score += parseInt(value);
       }
 
       let profile = '';
       let allocation = {};
-      const conservativeThreshold = 14;
-      const moderateThreshold = 22;
+      const conservativeThreshold = 12;
+      const moderateConservativeThreshold = 16;
+      const moderateThreshold = 20;
+      const moderateAggressiveThreshold = 25;
 
       if (score <= conservativeThreshold) {
         profile = 'Консервативный инвестор';
-        allocation = { 'Акции': 20, 'Облигации': 50, 'Золото': 20, 'Денежные фонды': 10 };
+        allocation = { 'Акции': 15, 'Облигации': 55, 'Золото': 20, 'Денежные фонды': 10 };
+      } else if (score <= moderateConservativeThreshold) {
+        profile = 'Умеренно-консервативный инвестор';
+        allocation = { 'Акции': 30, 'Облигации': 45, 'Золото': 15, 'Денежные фонды': 10 };
       } else if (score <= moderateThreshold) {
         profile = 'Умеренный инвестор';
-        allocation = { 'Акции': 40, 'Облигации': 40, 'Золото': 10, 'Денежные фонды': 10 };
+        allocation = { 'Акции': 45, 'Облигации': 35, 'Золото': 10, 'Денежные фонды': 10 };
+      } else if (score <= moderateAggressiveThreshold) {
+        profile = 'Умеренно-агрессивный инвестор';
+        allocation = { 'Акции': 60, 'Облигации': 25, 'Золото': 10, 'Денежные фонды': 5 };
       } else {
         profile = 'Агрессивный инвестор';
-        allocation = { 'Акции': 70, 'Облигации': 20, 'Золото': 5, 'Денежные фонды': 5 };
+        allocation = { 'Акции': 75, 'Облигации': 15, 'Золото': 5, 'Денежные фонды': 5 };
       }
 
-      // Показываем текстовый результат
       document.getElementById('result-text').textContent = profile;
       document.getElementById('quiz').classList.add('hidden');
       document.getElementById('result').classList.remove('hidden');
 
-      // Рисуем диаграмму
       drawChart(allocation);
     });
   }
 });
 
-// Функция построения диаграммы с использованием Chart.js
 function drawChart(allocation) {
   const ctxId = 'allocationChart';
   let canvas = document.getElementById(ctxId);
@@ -67,7 +67,6 @@ function drawChart(allocation) {
     document.getElementById('result').appendChild(canvas);
   }
 
-  // Подключаем Chart.js через CDN (если не подключен)
   if (typeof Chart === 'undefined') {
     const script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/npm/chart.js';

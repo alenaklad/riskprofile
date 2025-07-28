@@ -1,14 +1,14 @@
-// РСЃРїСЂР°РІР»РµРЅРЅС‹Р№ script.js
+// Исправленный script.js
 
-// Р–РґРµРј Р·Р°РіСЂСѓР·РєРё РІСЃРµР№ СЃС‚СЂР°РЅРёС†С‹
+// Ждем загрузки всей страницы
 window.addEventListener('DOMContentLoaded', () => {
-  // РР·РјРµРЅСЏРµРј С„СѓС‚РµСЂ РїСЂРё Р·Р°РіСЂСѓР·РєРµ
+  // Изменяем футер при загрузке
   const footer = document.querySelector('footer p');
   if (footer) {
     footer.textContent = 'Клад Инвестора 9.0';
   }
 
-  // Р’РµС€Р°РµРј РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР° РєРЅРѕРїРєСѓ "РџСЂРѕР№С‚Рё С‚РµСЃС‚"
+  // Вешаем обработчик на кнопку "Пройти тест"
   const startButton = document.getElementById('start-test');
   if (startButton) {
     startButton.addEventListener('click', () => {
@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // РћР±СЂР°Р±РѕС‚С‡РёРє С„РѕСЂРјС‹ С‚РµСЃС‚Р°
+  // Обработчик формы теста
   const quizForm = document.getElementById('quiz-form');
   if (quizForm) {
     quizForm.addEventListener('submit', function (e) {
@@ -35,11 +35,11 @@ window.addEventListener('DOMContentLoaded', () => {
       const moderateThreshold = 22;
 
       if (score <= conservativeThreshold) {
-        resultText = 'РљРѕРЅСЃРµСЂРІР°С‚РёРІРЅС‹Р№ РёРЅРІРµСЃС‚РѕСЂ вЂ” РІС‹ РїСЂРµРґРїРѕС‡РёС‚Р°РµС‚Рµ РЅР°РґС‘Р¶РЅРѕСЃС‚СЊ Рё СЃС‚Р°Р±РёР»СЊРЅРѕСЃС‚СЊ, РёР·Р±РµРіР°СЏ РІС‹СЃРѕРєРёС… СЂРёСЃРєРѕРІ.';
+        resultText = 'Консервативный инвестор — вы предпочитаете надёжность и стабильность, избегая высоких рисков.';
       } else if (score <= moderateThreshold) {
-        resultText = 'РЈРјРµСЂРµРЅРЅС‹Р№ РёРЅРІРµСЃС‚РѕСЂ вЂ” РІС‹ РіРѕС‚РѕРІС‹ Рє РЅРµРєРѕС‚РѕСЂРѕРјСѓ СЂРёСЃРєСѓ СЂР°РґРё СѓРјРµСЂРµРЅРЅРѕР№ РїСЂРёР±С‹Р»Рё.';
+        resultText = 'Умеренный инвестор — вы готовы к некоторому риску ради умеренной прибыли.';
       } else {
-        resultText = 'РђРіСЂРµСЃСЃРёРІРЅС‹Р№ РёРЅРІРµСЃС‚РѕСЂ вЂ” РІС‹ СЃС‚СЂРµРјРёС‚РµСЃСЊ Рє РјР°РєСЃРёРјР°Р»СЊРЅРѕР№ РґРѕС…РѕРґРЅРѕСЃС‚Рё, РґР°Р¶Рµ РµСЃР»Рё СЌС‚Рѕ СЃРІСЏР·Р°РЅРѕ СЃ РІС‹СЃРѕРєРёРјРё СЂРёСЃРєР°РјРё.';
+        resultText = 'Агрессивный инвестор — вы стремитесь к максимальной доходности, даже если это связано с высокими рисками.';
       }
 
       document.getElementById('result-text').textContent = resultText;

@@ -1,128 +1,114 @@
-// Скрипт с обновленным тестом по вопросам с egorarslanov.ru и пересчитанными диапазонами баллов
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Определите свой риск-профиль</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <section class="hero">
+    <h1>Определите свой риск-профиль инвестора</h1>
+    <p>Пройдите тест, чтобы узнать свой инвестиционный профиль и увидеть оптимальное распределение активов.</p>
+    <button id="start-test">Пройти тест</button>
+  </section>
 
-window.addEventListener('DOMContentLoaded', () => {
-  const footer = document.querySelector('footer p');
-  if (footer) {
-    footer.textContent = 'Клад Инвестора 9.0';
-  }
+  <section id="quiz" class="hidden">
+    <form id="quiz-form">
+      <div class="question">
+        <p>1. Примерно через сколько лет вы планируете выйти на пенсию?</p>
+        <label><input type="radio" name="q1" value="1" required /> Через 4–6 лет</label>
+        <label><input type="radio" name="q1" value="2" /> Через 7–10 лет</label>
+        <label><input type="radio" name="q1" value="3" /> Через 11–16 лет</label>
+        <label><input type="radio" name="q1" value="4" /> Более чем через 16 лет</label>
+      </div>
+      <div class="question">
+        <p>2. Планируете ли вы выводить или занимать более трети ваших пенсионных накоплений в ближайшие семь лет?</p>
+        <label><input type="radio" name="q2" value="1" required /> Нет</label>
+        <label><input type="radio" name="q2" value="2" /> Да, в течение 3 лет</label>
+        <label><input type="radio" name="q2" value="3" /> Да, через 4–6 лет</label>
+      </div>
+      <div class="question">
+        <p>3. Есть ли у вас резервный фонд?</p>
+        <label><input type="radio" name="q3" value="1" required /> Нет, у меня нет резервного фонда</label>
+        <label><input type="radio" name="q3" value="2" /> Есть, но менее 3-месячного дохода</label>
+        <label><input type="radio" name="q3" value="3" /> Да, достаточный резервный фонд</label>
+      </div>
+      <div class="question">
+        <p>4. Примерно какая часть ваших общих активов находится в вашем пенсионном плане?</p>
+        <label><input type="radio" name="q4" value="1" required /> Менее 25%</label>
+        <label><input type="radio" name="q4" value="2" /> 25–50%</label>
+        <label><input type="radio" name="q4" value="3" /> 51–75%</label>
+        <label><input type="radio" name="q4" value="4" /> Более 75%</label>
+      </div>
+      <div class="question">
+        <p>5. Какой из сценариев описывает ваш ожидаемый доход в течение следующих пяти лет?</p>
+        <label><input type="radio" name="q5" value="1" required /> Инфляция, доходы не увеличатся</label>
+        <label><input type="radio" name="q5" value="2" /> Рост доходов выше инфляции</label>
+        <label><input type="radio" name="q5" value="3" /> Существенный рост доходов</label>
+        <label><input type="radio" name="q5" value="4" /> Ожидаю снижение доходов</label>
+      </div>
+      <div class="question">
+        <p>6. Выберите предложение, отражающее ваше отношение к инвестиционному риску:</p>
+        <label><input type="radio" name="q6" value="1" required /> Хочу уверенности, что накопления не снизятся</label>
+        <label><input type="radio" name="q6" value="2" /> Баланс роста и безопасности</label>
+        <label><input type="radio" name="q6" value="3" /> Максимальный рост вне зависимости от риска</label>
+      </div>
+      <div class="question">
+        <p>7а. Инвестировали ли вы когда-либо в облигации?</p>
+        <label><input type="radio" name="q7a" value="1" required /> Нет, некомфортно</label>
+        <label><input type="radio" name="q7a" value="2" /> Нет, но комфортно</label>
+        <label><input type="radio" name="q7a" value="3" /> Да, но некомфортно</label>
+        <label><input type="radio" name="q7a" value="4" /> Да, комфортно</label>
+      </div>
+      <div class="question">
+        <p>7б. Инвестировали ли вы когда-либо в акции?</p>
+        <label><input type="radio" name="q7b" value="1" required /> Нет, некомфортно</label>
+        <label><input type="radio" name="q7b" value="2" /> Нет, но комфортно</label>
+        <label><input type="radio" name="q7b" value="3" /> Да, но некомфортно</label>
+        <label><input type="radio" name="q7b" value="4" /> Да, комфортно</label>
+      </div>
+      <div class="question">
+        <p>8. Сколько иждивенцев находится на вашем попечении?</p>
+        <label><input type="radio" name="q8" value="1" required /> Нет</label>
+        <label><input type="radio" name="q8" value="2" /> Один</label>
+        <label><input type="radio" name="q8" value="3" /> Два или три</label>
+        <label><input type="radio" name="q8" value="4" /> Более трёх</label>
+      </div>
+      <div class="question">
+        <p>9. Какая часть вашего дохода уходит на кредиты (без ипотеки)?</p>
+        <label><input type="radio" name="q9" value="1" required /> Менее 10%</label>
+        <label><input type="radio" name="q9" value="2" /> 10–25%</label>
+        <label><input type="radio" name="q9" value="3" /> 26–50%</label>
+        <label><input type="radio" name="q9" value="4" /> Более 50%</label>
+      </div>
+      <div class="question">
+        <p>10. Что вы предпочли бы для пенсионного обеспечения:</p>
+        <label><input type="radio" name="q10" value="1" required /> Только низкорисковые инструменты</label>
+        <label><input type="radio" name="q10" value="2" /> Низкий риск с малой долей рискованных</label>
+        <label><input type="radio" name="q10" value="3" /> Сбалансированное сочетание</label>
+        <label><input type="radio" name="q10" value="4" /> Максимальный рост с высоким риском</label>
+      </div>
+      <div class="question">
+        <p>11. Если бы вы могли повысить доходность, принимая больше риска, то вы...</p>
+        <label><input type="radio" name="q11" value="1" required /> Не стали бы увеличивать риск</label>
+        <label><input type="radio" name="q11" value="2" /> Немного повысили риск</label>
+        <label><input type="radio" name="q11" value="3" /> Существенно повысили риск</label>
+        <label><input type="radio" name="q11" value="4" /> Максимально повысили риск ради доходности</label>
+      </div>
+      <button type="submit">Узнать результат</button>
+    </form>
+  </section>
 
-  const startButton = document.getElementById('start-test');
-  if (startButton) {
-    startButton.addEventListener('click', () => {
-      document.getElementById('quiz').classList.remove('hidden');
-      document.querySelector('.hero').classList.add('hidden');
-    });
-  }
+  <section id="result" class="hidden">
+    <h2>Ваш результат:</h2>
+    <p id="result-text"></p>
+  </section>
 
-  const quizForm = document.getElementById('quiz-form');
-  if (quizForm) {
-    quizForm.addEventListener('submit', function (e) {
-      e.preventDefault();
+  <footer>
+    <p>Клад Инвестора 9.0</p>
+  </footer>
 
-      const formData = new FormData(this);
-      let score = 0;
-      for (let [name, value] of formData.entries()) {
-        score += parseInt(value);
-      }
-
-      let profile = '';
-      let allocation = {};
-      let description = '';
-      let allocationExplanation = '';
-      let recommendations = '';
-
-      // С учётом 11 вопросов и 4 уровней ответов (1-4)
-      const conservativeThreshold = 18; 
-      const moderateConservativeThreshold = 26;
-      const moderateThreshold = 34;
-      const moderateAggressiveThreshold = 42;
-
-      if (score <= conservativeThreshold) {
-        profile = 'Консервативный инвестор';
-        allocation = { 'Акции': 15, 'Облигации': 60, 'Золото': 15, 'Денежные фонды': 10 };
-        description = 'Вы предпочитаете низкий риск и стабильность. Ваша цель — сохранение капитала с минимальными колебаниями.';
-        allocationExplanation = 'Основной упор сделан на облигации и защитные активы (золото и денежные фонды), чтобы снизить волатильность портфеля.';
-        recommendations = 'Избегайте высокорискованных инструментов, выбирайте надёжные облигации и депозиты. Рассмотрите фонды облигаций и золото для защиты.';
-      } else if (score <= moderateConservativeThreshold) {
-        profile = 'Умеренно-консервативный инвестор';
-        allocation = { 'Акции': 30, 'Облигации': 50, 'Золото': 10, 'Денежные фонды': 10 };
-        description = 'Вы готовы к небольшим рискам ради умеренной доходности, но сохранность средств всё еще важна.';
-        allocationExplanation = 'Добавлены акции для роста капитала, но основная доля остаётся в облигациях и защитных активах.';
-        recommendations = 'Используйте диверсифицированные фонды акций и облигаций, избегайте концентрации в одной отрасли.';
-      } else if (score <= moderateThreshold) {
-        profile = 'Умеренный инвестор';
-        allocation = { 'Акции': 50, 'Облигации': 35, 'Золото': 10, 'Денежные фонды': 5 };
-        description = 'Вы ищете баланс между риском и доходностью и готовы переносить умеренные колебания ради долгосрочного роста.';
-        allocationExplanation = 'Портфель сбалансирован: акции дают рост, облигации снижают риск, золото защищает от инфляции.';
-        recommendations = 'Регулярно пересматривайте портфель и учитывайте долгосрочные цели при выборе инструментов.';
-      } else if (score <= moderateAggressiveThreshold) {
-        profile = 'Умеренно-агрессивный инвестор';
-        allocation = { 'Акции': 65, 'Облигации': 25, 'Золото': 5, 'Денежные фонды': 5 };
-        description = 'Вы готовы к повышенному риску ради увеличенной доходности.';
-        allocationExplanation = 'Основной упор на акции для роста капитала, при этом облигации и золото снижают общий риск портфеля.';
-        recommendations = 'Используйте фонды акций роста и добавляйте защитные активы для базовой диверсификации.';
-      } else {
-        profile = 'Агрессивный инвестор';
-        allocation = { 'Акции': 75, 'Облигации': 20, 'Золото': 5, 'Денежные фонды': 0 };
-        description = 'Вы стремитесь к максимальной доходности и готовы переносить высокую волатильность и риск.';
-        allocationExplanation = 'Высокая доля акций обеспечивает рост, минимальная доля защитных активов оставлена для диверсификации.';
-        recommendations = 'Фокусируйтесь на активах с высоким потенциалом роста, добавляя минимальную долю защитных инструментов.';
-      }
-
-      const resultText = document.getElementById('result-text');
-      resultText.innerHTML = `<strong>${profile}</strong><br><p>${description}</p><p><em>Почему такое распределение активов?</em> ${allocationExplanation}</p><p><strong>Рекомендации:</strong> ${recommendations}</p>`;
-
-      document.getElementById('quiz').classList.add('hidden');
-      document.getElementById('result').classList.remove('hidden');
-
-      drawChart(allocation);
-    });
-  }
-});
-
-function drawChart(allocation) {
-  const ctxId = 'allocationChart';
-  let canvas = document.getElementById(ctxId);
-  if (!canvas) {
-    canvas = document.createElement('canvas');
-    canvas.id = ctxId;
-    document.getElementById('result').appendChild(canvas);
-  }
-
-  if (typeof Chart === 'undefined') {
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
-    script.onload = () => buildChart(canvas, allocation);
-    document.body.appendChild(script);
-  } else {
-    buildChart(canvas, allocation);
-  }
-}
-
-function buildChart(canvas, allocation) {
-  const labels = Object.keys(allocation);
-  const data = Object.values(allocation);
-
-  new Chart(canvas, {
-    type: 'pie',
-    data: {
-      labels: labels,
-      datasets: [{
-        data: data,
-        backgroundColor: ['#4caf50', '#2196f3', '#ff9800', '#9e9e9e'],
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'bottom',
-        },
-        title: {
-          display: true,
-          text: 'Распределение активов (%)'
-        }
-      }
-    }
-  });
-}
+  <script src="script.js"></script>
+</body>
+</html>

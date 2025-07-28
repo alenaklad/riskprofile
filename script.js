@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // РР·РјРµРЅСЏРµРј С„СѓС‚РµСЂ РїСЂРё Р·Р°РіСЂСѓР·РєРµ
   const footer = document.querySelector('footer p');
   if (footer) {
-    footer.textContent = 'РљР»Р°Рґ РРЅРІРµСЃС‚РѕСЂР° 9.0';
+    footer.textContent = 'Клад Инвестора 9.0';
   }
 
   // Р’РµС€Р°РµРј РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР° РєРЅРѕРїРєСѓ "РџСЂРѕР№С‚Рё С‚РµСЃС‚"

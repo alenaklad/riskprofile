@@ -1,4 +1,4 @@
-// Скрипт с диаграммой распределения активов и дополнительными профилями
+// Скрипт с диаграммой распределения активов, дополнительными профилями и описаниями
 
 window.addEventListener('DOMContentLoaded', () => {
   const footer = document.querySelector('footer p');
@@ -27,6 +27,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
       let profile = '';
       let allocation = {};
+      let description = '';
+      let allocationExplanation = '';
+
       const conservativeThreshold = 12;
       const moderateConservativeThreshold = 16;
       const moderateThreshold = 20;
@@ -35,21 +38,33 @@ window.addEventListener('DOMContentLoaded', () => {
       if (score <= conservativeThreshold) {
         profile = 'Консервативный инвестор';
         allocation = { 'Акции': 15, 'Облигации': 55, 'Золото': 20, 'Денежные фонды': 10 };
+        description = 'Вы предпочитаете низкий риск и стабильность. Ваша цель — сохранение капитала с минимальными колебаниями.';
+        allocationExplanation = 'Основной упор сделан на облигации и защитные активы (золото и денежные фонды), чтобы снизить волатильность портфеля.';
       } else if (score <= moderateConservativeThreshold) {
         profile = 'Умеренно-консервативный инвестор';
         allocation = { 'Акции': 30, 'Облигации': 45, 'Золото': 15, 'Денежные фонды': 10 };
+        description = 'Вы готовы к небольшим рискам ради умеренной доходности, но сохранность средств всё еще важна.';
+        allocationExplanation = 'Добавлены акции для роста капитала, но основная доля остаётся в облигациях и защитных активах.';
       } else if (score <= moderateThreshold) {
         profile = 'Умеренный инвестор';
         allocation = { 'Акции': 45, 'Облигации': 35, 'Золото': 10, 'Денежные фонды': 10 };
+        description = 'Вы ищете баланс между риском и доходностью. Вам комфортны временные колебания ради долгосрочного роста.';
+        allocationExplanation = 'Портфель сбалансирован: акции дают рост, облигации снижают риск, золото защищает от инфляции.';
       } else if (score <= moderateAggressiveThreshold) {
         profile = 'Умеренно-агрессивный инвестор';
         allocation = { 'Акции': 60, 'Облигации': 25, 'Золото': 10, 'Денежные фонды': 5 };
+        description = 'Вы готовы к риску ради повышенной доходности, но всё же оставляете часть средств в защитных активах.';
+        allocationExplanation = 'Основной упор на акции для роста капитала, при этом облигации и золото снижают общий риск портфеля.';
       } else {
         profile = 'Агрессивный инвестор';
         allocation = { 'Акции': 75, 'Облигации': 15, 'Золото': 5, 'Денежные фонды': 5 };
+        description = 'Вы стремитесь к максимальной доходности и готовы переносить высокую волатильность и риск.';
+        allocationExplanation = 'Высокая доля акций обеспечивает рост, минимальная доля защитных активов оставлена для базовой диверсификации.';
       }
 
-      document.getElementById('result-text').textContent = profile;
+      const resultText = document.getElementById('result-text');
+      resultText.innerHTML = `<strong>${profile}</strong><br><p>${description}</p><p><em>Почему такое распределение активов?</em> ${allocationExplanation}</p>`;
+
       document.getElementById('quiz').classList.add('hidden');
       document.getElementById('result').classList.remove('hidden');
 
